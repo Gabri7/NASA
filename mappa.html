@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e6f3ff;
+            font-family: Arial, sans-serif;
+        }
+        .solar-system {
+            position: relative;
+            width: 300px;
+            height: 600px;
+        }
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+        }
+        .planet:hover {
+            transform: scale(1.1);
+        }
+        .planet1 {
+            width: 150px;
+            height: 150px;
+            top: 0;
+            left: 100px;
+            background-image: url('Frame 8.png');
+            box-shadow: 0 0 20px #ffd700;
+        }
+        .planet2 {
+            width: 80px;
+            height: 80px;
+            top: 130px;
+            left: 30px;
+            background-image: url('Frame 8.png');
+        }
+        .planet3 {
+            width: 90px;
+            height: 90px;
+            top: 240px;
+            left: 180px;
+            background-image: url('Frame 8.png');
+        }
+        .planet4 {
+            width: 110px;
+            height: 110px;
+            top: 360px;
+            left: 20px;
+            background-image: url('Group.svg');
+        }
+        .planet5 {
+            width: 95px;
+            height: 95px;
+            bottom: 0;
+            right: 30px;
+            background-image: url('neptune.jpg');
+        }
+    </style>
+</head>
+<body>
+    <div class="solar-system">
+        <div class="path"></div>
+        <a href="planet1.html" class="planet planet1">
+            <div class="astronaut"></div>
+        </a>
+        <a href="planet2.html" class="planet planet2"></a>
+        <a href="planet3.html" class="planet planet3"></a>
+        <a href="planet4.html" class="planet planet4">
+            <div class="ring"></div>
+        </a>
+        <a href="proximaB.html" class="planet planet5"></a>
+    </div>
+
+    <script>
+        document.querySelectorAll('.planet').forEach(planet => {
+            planet.addEventListener('mouseover', () => {
+                planet.style.transform = 'scale(1.1)';
+            });
+            planet.addEventListener('mouseout', () => {
+                planet.style.transform = 'scale(1)';
+            });
+            planet.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
+                const href = planet.getAttribute('href');
+                window.location.href = href; // Navigate to the new page
+            });
+        });
+    </script>
+</body>
+</html>
