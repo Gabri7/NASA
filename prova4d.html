@@ -190,9 +190,25 @@ const quizzes = [
 let currentQuizIndex = 0;
 
 // Mostra il quiz
+//function showQuiz() {
+  //document.getElementById('quiz-container').style.display = 'block';
+  //showCurrentQuiz();
+//}
+let quizLoaded = false;
+
 function showQuiz() {
+  if (!quizLoaded) {
+    const answersContainer = document.getElementById('answers');
+    quizzes[currentQuizIndex].answers.forEach((answer, index) => {
+      const button = document.createElement('button');
+      button.textContent = answer;
+      button.onclick = () => checkAnswer(index);
+      answersContainer.appendChild(button);
+    });
+    quizLoaded = true;
+  }
   document.getElementById('quiz-container').style.display = 'block';
-  showCurrentQuiz();
+  document.getElementById('question').textContent = quizzes[currentQuizIndex].question;
 }
 
 function showCurrentQuiz() {
@@ -267,6 +283,8 @@ function closeQuiz() {
     button.style.backgroundColor = '';
   });
 }
+
+
   </script>
 </body>
 </html>
