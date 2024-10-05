@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Proxima Centauri B</title>
+  <meta name="description" content="Proxima Centauri B">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js"></script>
+  <style>
+    #quiz-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+    }
+    #quiz-container button {
+      margin: 5px;
+      padding: 10px;
+    }
+    #result-message {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <a-scene>
+    <a-sky src="./360image.png"></a-sky>
+
+    <!-- Aggiungere una camera con cursore per interazione -->
+    <a-camera>
+      <a-cursor color="yellow"></a-cursor>
+    </a-camera>
+
+    <!-- Testo Titolo -->
+    <a-text font="kelsonsans" value="Proxima Centauri B" width="6" position="-2.5 0.25 -1.5"
+            rotation="0 15 0"></a-text>
+
+    <!-- Pulsante Interattivo per Avviare il Quiz -->
+    <a-entity position="0 1.6 -4">
+      <a-box color="blue" depth="0.2" height="0.2" width="0.6" class="clickable"
+             event-set__mouseenter="_event: mouseenter; color: yellowgreen"
+             event-set__mouseleave="_event: mouseleave; color: blue"
+             onclick="showQuiz()">
+        <a-text value="Start Quiz" align="center" color="white" position="0 0 0.1"></a-text>
+      </a-box>
+    </a-entity>
+  </a-scene>
+
+  <!-- Modale per il Quiz -->
+  <div id="quiz-container">
+    <h2>Quiz</h2>
+    <p id="question"></p>
+    <div id="answers"></div>
+    <p id="result-message"></p>
+    <button id="return-button" style="display: none;" onclick="returnToMap()">Return to Map</button>
+  </div>
+
+  <script>
+    // Domande e risposte del quiz
+    const quiz = {
+      question: "What is the approximate distance of Proxima Centauri B from Earth?",
+      answers: [
+        "4.2 light-years",
+        "10 light-years",
+        "1 light-year",
+        "100 light-years"
+      ],
+      correctAnswer: 0
+    };
+
+    // Mostra il quiz
+    function showQuiz() {
+      document.getElementById('quiz-container').style.display = 'block';
+      document.getElementById('question').textContent = quiz.question;
+      const answersContainer = document.getElementById('answers');
+      answersContainer.innerHTML = '';
+      quiz.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+        button.textContent = answer;
+        button.onclick = () => checkAnswer(index);
+        answersContainer.appendChild(button);
+      });
+    }
+
+    // Controlla la risposta
+    function checkAnswer(answerIndex) {
+      const buttons = document.querySelectorAll('#answers button');
+      buttons.forEach(button => button.disabled = true);
+
+      if (answerIndex === quiz.correctAnswer) {
+        buttons[answerIndex].style.backgroundColor = 'green';
+        document.getElementById('result-message').textContent = 'Correct!';
+        document.getElementById('return-button').style.display = 'block';
+      } else {
+        buttons[answerIndex].style.backgroundColor = 'red';
+        document.getElementById('result-message').textContent = 'Incorrect. Try again!';
+        setTimeout(() => {
+          buttons.forEach(button => {
+            button.disabled = false;
+            button.style.backgroundColor = '';
+          });
+          document.getElementById('result-message').textContent = '';
+        }, 2000);
+      }
+    }
+
+    // Funzione per tornare alla mappa
+    function returnToMap() {
+      window.location.href = 'mappa.html';
+    }
+  </script>
+</body>
+</html>
