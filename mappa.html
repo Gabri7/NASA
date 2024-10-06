@@ -9,11 +9,24 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #e6f3ff;
+            background-image: url("Component 4.png");
             font-family: Arial, sans-serif;
+        }
+        .header {
+            margin-top: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .spaceship {
+            font-weight: bold;
+            color: #3366cc;
         }
         .solar-system {
             position: relative;
@@ -34,53 +47,55 @@
         .planet1 {
             width: 150px;
             height: 150px;
-            top: 0;
-            left: 100px;
-            background-image: url('Frame 8.png');
-            box-shadow: 0 0 20px #ffd700;
+            top: 0px;
+            left: 170px;
+            background-image: url('pianeta1.svg');
         }
         .planet2 {
-            width: 80px;
-            height: 80px;
-            top: 130px;
-            left: 30px;
-            background-image: url('Frame 8.png');
+            width: 120px;
+            height: 120px;
+            top: 180px;
+            left: 40px;
+            background-image: url('pianeta2.svg');
         }
         .planet3 {
-            width: 90px;
-            height: 90px;
-            top: 240px;
-            left: 180px;
-            background-image: url('Frame 8.png');
+            width:110px;
+            height: 110px;
+            top: 390px;
+            left: 240px;
+            background-image: url('pianeta3.svg');
         }
         .planet4 {
-            width: 110px;
-            height: 110px;
-            top: 360px;
-            left: 20px;
-            background-image: url('Group.svg');
+            width: 130px;
+            height: 130px;
+            top: 460px;
+            left: 70px;
+            background-image: url('pianeta4.svg');
         }
-        .planet5 {
-            width: 95px;
-            height: 95px;
-            bottom: 0;
-            right: 30px;
-            background-image: url('neptune.jpg');
+        .testo{
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .testo2{
+            font-size: 2.5em;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>Start to <span class="spaceship">Explore!</span></h1>
+    </div>
     <div class="solar-system">
         <div class="path"></div>
-        <a href="planet1.html" class="planet planet1">
-            <div class="astronaut"></div>
-        </a>
-        <a href="planet2.html" class="planet planet2"></a>
+        <a href="proxima.html" class="planet planet1"></a>
+        <a href="second.html" class="planet planet2"></a>
         <a href="planet3.html" class="planet planet3"></a>
-        <a href="planet4.html" class="planet planet4">
-            <div class="ring"></div>
-        </a>
-        <a href="proximaB.html" class="planet planet5"></a>
+        <a href="planet4.html" class="planet planet4"></a>
     </div>
 
     <script>

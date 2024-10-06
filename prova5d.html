@@ -125,7 +125,38 @@
     transform: translateY(1px);
     }
 
+    /*----------------*/
+    /* Stile per il pulsante audio */
+    #audio-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    #audio-button:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    #audio-button i {
+      font-size: 24px;
+      color: #333;
+    }
   </style>
+  <!-- Aggiungi Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 <body>
   <a-scene>
@@ -142,11 +173,11 @@
 
     <!-- Pulsante Interattivo per Avviare il Quiz -->
     <a-entity position="0 1.6 -4">
-      <a-box color="blue" depth="0.2" height="0.2" width="0.6" class="clickable"
+      <a-box color="#E4FF5A" depth="0.2" height="0.4" width="1.2" class="clickable"
              event-set__mouseenter="_event: mouseenter; color: yellowgreen"
              event-set__mouseleave="_event: mouseleave; color: blue"
              onclick="showQuiz()">
-        <a-text value="Start Quiz" align="center" color="white" position="0 0 0.1"></a-text>
+        <a-text value="Start Quiz" align="center" color="black" position="0 0 0.11"></a-text>
       </a-box>
     </a-entity>
   </a-scene>
@@ -161,6 +192,17 @@
     <button id="return-button" onclick="returnToMap()">Return to Map</button>
     <button id="next-button" onclick="nextQuiz()">Next Question</button>
   </div>
+
+  <!-- Aggiungi il pulsante audio -->
+  <button id="audio-button" onclick="toggleAudio()">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
+  <!-- Aggiungi l'elemento audio -->
+  <audio id="background-audio" loop>
+    <source src="./speech_proxima.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     // Domande e risposte del quiz
@@ -190,9 +232,25 @@ const quizzes = [
 let currentQuizIndex = 0;
 
 // Mostra il quiz
+//function showQuiz() {
+  //document.getElementById('quiz-container').style.display = 'block';
+  //showCurrentQuiz();
+//}
+let quizLoaded = false;
+
 function showQuiz() {
+  if (!quizLoaded) {
+    const answersContainer = document.getElementById('answers');
+    quizzes[currentQuizIndex].answers.forEach((answer, index) => {
+      const button = document.createElement('button');
+      button.textContent = answer;
+      button.onclick = () => checkAnswer(index);
+      answersContainer.appendChild(button);
+    });
+    quizLoaded = true;
+  }
   document.getElementById('quiz-container').style.display = 'block';
-  showCurrentQuiz();
+  document.getElementById('question').textContent = quizzes[currentQuizIndex].question;
 }
 
 function showCurrentQuiz() {
@@ -267,6 +325,23 @@ function closeQuiz() {
     button.style.backgroundColor = '';
   });
 }
+
+let isPlaying = false;
+    const audioElement = document.getElementById('background-audio');
+    const audioButton = document.getElementById('audio-button');
+
+    function toggleAudio() {
+      if (isPlaying) {
+        audioElement.pause();
+        audioButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      } else {
+        audioElement.play();
+        audioButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+      }
+      isPlaying = !isPlaying;
+    }
+
+
   </script>
 </body>
 </html>

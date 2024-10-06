@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Spaceship</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /*}*/
+        /*.container {
+            width: 320px;
+            height: 568px;
+            background-color: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }*/
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .back-button {
+            font-size: 24px;
+            color: #000;
+            text-decoration: none;
+        }
+        .planet-icon {
+            width: 40px;
+            height: 40px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .spaceship {
+            font-weight: bold;
+            color: #3366cc;
+        }
+        .free-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .spaceship-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+        }
+        .arrow {
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+        }
+        .spaceship-image {
+            width: 150px;
+            height: 150px;
+        }
+        .next-button {
+            background-color: #3366cc;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 0;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .testo{
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="header">
+            
+        </div>
+        
+        <div class="testo"><h1>Choose your <span class="spaceship">spaceship!</span></h1></div>
+        <!---<div class="free-label">FREE</div>--->
+        <div class="free-label">You will need it for your space research!</div>
+        <div class="spaceship-container">
+            <span class="arrow" id="prev-spaceship">&#8249;</span>
+            <img src="https://via.placeholder.com/150" alt="Spaceship" class="spaceship-image" id="spaceship-image">
+            <span class="arrow" id="next-spaceship">&#8250;</span>
+        </div>
+        
+        <button class="next-button" onclick="goToNextPage()">NEXT</button>
+    </div>
+        
+
+    <script>
+        const spaceships = [
+            'battleship1.svg',
+            'battleship2.svg',
+            'battleship3.svg'
+        ];
+        let currentSpaceship = 0;
+        const spaceshipImage = document.getElementById('spaceship-image');
+        const prevButton = document.getElementById('prev-spaceship');
+        const nextButton = document.getElementById('next-spaceship');
+
+        function updateSpaceship() {
+            spaceshipImage.src = spaceships[currentSpaceship];
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentSpaceship = (currentSpaceship - 1 + spaceships.length) % spaceships.length;
+            updateSpaceship();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentSpaceship = (currentSpaceship + 1) % spaceships.length;
+            updateSpaceship();
+        });
+
+        updateSpaceship();
+
+        function goToNextPage() {
+        // Esegui qui qualsiasi logica necessaria
+        window.location.href = 'mappa.html';
+}
+    </script>
+</body>
+</html>
