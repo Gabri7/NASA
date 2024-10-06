@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose Your Spaceship</title>
+    <title>Create Your avatar</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -95,13 +95,25 @@
             
         </div>
         
-        <div class="testo"><h1>Choose your <span class="spaceship">spaceship!</span></h1></div>
+        <div class="testo"><h1>Create your <span class="spaceship">avatar!</span></h1></div>
         <!---<div class="free-label">FREE</div>--->
-        <div class="free-label">You will need it for your space research!</div>
+        <div class="free-label">You will need it to explore new worlds!</div>
         <div class="spaceship-container">
             <span class="arrow" id="prev-spaceship">&#8249;</span>
             <img src="https://via.placeholder.com/150" alt="Spaceship" class="spaceship-image" id="spaceship-image">
             <span class="arrow" id="next-spaceship">&#8250;</span>
+        </div>
+
+        <div class="spaceship-container">
+            <span class="arrow" id="prev-corpo">&#8249;</span>
+            <img src="https://via.placeholder.com/150" alt="corpo" class="corpo-image" id="corpo-image">
+            <span class="arrow" id="next-corpo">&#8250;</span>
+        </div>
+
+        <div class="spaceship-container">
+            <span class="arrow" id="prev-piedi">&#8249;</span>
+            <img src="https://via.placeholder.com/150" alt="piedi" class="piedi-image" id="piedi-image">
+            <span class="arrow" id="next-piedi">&#8250;</span>
         </div>
         
         <button class="next-button" onclick="goToNextPage()">NEXT</button>
@@ -110,9 +122,9 @@
 
     <script>
         const spaceships = [
-            'battleship1.svg',
-            'battleship2.svg',
-            'battleship3.svg'
+            'image 4.svg',
+            'Frame_8-removebg-preview 1.svg',
+            'Frame_7__8_-removebg-preview 1.svg'
         ];
         let currentSpaceship = 0;
         const spaceshipImage = document.getElementById('spaceship-image');
@@ -134,10 +146,65 @@
         });
 
         updateSpaceship();
+        ///--------------------------------------------------------------------------------
+
+        const corpo = [
+            'image 5.svg',
+            'Frame_8.svg',
+            'Frame_7__8_-removebg-preview 2.svg'
+        ];
+        let currentCorpo = 0;
+        const corpoImage = document.getElementById('corpo-image');
+        const prevCorpo = document.getElementById('prev-corpo');
+        const nextCorpo = document.getElementById('next-corpo');
+
+        function updatecorpo() {
+            corpoImage.src = corpo[currentCorpo];
+        }
+
+        prevCorpo.addEventListener('click', () => {
+            currentCorpo = (currentCorpo - 1 + corpo.length) % corpo.length;
+            updatecorpo();
+        });
+
+        nextCorpo.addEventListener('click', () => {
+            currentCorpo = (currentCorpo + 1) % corpo.length;
+            updatecorpo();
+        });
+
+        updatecorpo();
+
+        ///--------------------------------------------------------------------------------
+
+        const piedi = [
+            'image 6.svg',
+            'Frame_8 2.svg',
+            'Frame_7__8_-removebg-preview 3.svg'
+        ];
+        let currentPiedi = 0;
+        const piediImage = document.getElementById('piedi-image');
+        const prevPiedi = document.getElementById('prev-piedi');
+        const nextPiedi = document.getElementById('next-piedi');
+
+        function updatepiedi() {
+            piediImage.src = piedi[currentPiedi];
+        }
+
+        prevPiedi.addEventListener('click', () => {
+            currentPiedi = (currentPiedi - 1 + piedi.length) % piedi.length;
+            updatepiedi();
+        });
+
+        nextPiedi.addEventListener('click', () => {
+            currentPiedi = (currentPiedi + 1) % piedi.length;
+            updatepiedi();
+        });
+
+        updatepiedi();
 
         function goToNextPage() {
         // Esegui qui qualsiasi logica necessaria
-        window.location.href = 'spaceships.html';
+        window.location.href = 'mappa.html';
 }
     </script>
 </body>
