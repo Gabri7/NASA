@@ -161,10 +161,19 @@
       font-size: 24px;
       color: #333;
     }
-
-    /* Classe per simulare la Deuteranopia */
+    /* Classe per simulare la Deuteranopia usando CSS */
     .deuteranopia {
-      filter: url(#deuteranopia-filter);
+      filter: grayscale(0.5) sepia(0.5) hue-rotate(180deg);
+    }
+
+    /* Assicurarsi che il filtro si applichi a tutto il contenuto */
+    body.deuteranopia * {
+      filter: inherit;
+    }
+
+    /* Stile per il contenuto A-Frame */
+    .a-canvas {
+      position: fixed !important;
     }
   </style>
   <!-- Aggiungi Font Awesome per le icone -->
@@ -413,6 +422,16 @@ let isPlaying = false;
         colorblindButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
       }
       isColorblindFilterActive = !isColorblindFilterActive;
+
+      // Forza il ridisegno della scena A-Frame
+      var scene = document.querySelector('a-scene');
+      if (scene) {
+        scene.object3D.traverse(function(node) {
+          if (node.material) {
+            node.material.needsUpdate = true;
+          }
+        });
+      }
     }
   </script>
 </body>
